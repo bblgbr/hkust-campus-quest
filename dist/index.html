@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102d36">
+  <meta name="description" content="Explore 46 official HKUST Clear Water Bay panoramas through three campus adventure chapters.">
+  <title>Campus Quest · HKUST</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="scenes-data.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <main class="landing-screen screen" id="homeScreen">
+    <div class="landing-top"><span class="landing-logo">HKUST <span>✦</span> CAMPUS QUEST</span><span>CLEAR WATER BAY · HONG KONG</span></div>
+    <div class="landing-content"><span class="landing-eyebrow">A THREE-CHAPTER CAMPUS ADVENTURE</span><h1>The campus<br>is your <em>clue.</em></h1><p>Walk through the official HKUST panoramas. Follow connected paths, find hidden pieces, and uncover the missing welcome card.</p><button type="button" class="start-button" id="startGameBtn">Start Game <span>↗</span></button><span class="landing-count">46 REAL CAMPUS SCENES <span>·</span> 3 CHAPTERS</span></div>
+    <div class="landing-bottom"><span>01 — BEGIN AT THE NORTH ENTRANCE</span><span>Imagery © HKUST · <a href="https://campus-vr.hkust.edu.hk/" target="_blank" rel="noopener">Official virtual tour ↗</a></span></div>
+  </main>
+
+  <main class="chapters-screen screen" id="levelsScreen" hidden>
+    <header class="chapters-top"><button type="button" class="text-back" id="homeBackBtn">← Home</button><span>HKUST <b>CAMPUS QUEST</b></span><span id="chapterProgress">01 / 03 PLAYABLE</span></header>
+    <div class="chapters-intro"><span class="eyebrow">YOUR JOURNEY</span><h1>Choose a chapter.</h1><p>Explore the available chapters. Chapter 3 is in development.</p></div>
+    <div class="chapter-grid" id="chapterGrid" aria-label="Three game chapters"></div>
+    <div class="chapters-bottom"><span>EXPLORE THE CLEAR WATER BAY CAMPUS, ONE CLUE AT A TIME.</span><span>Map and panoramas © HKUST</span></div>
+  </main>
+
+  <div class="app-shell screen" id="gameScreen" hidden>
+    <header class="topbar">
+      <div class="game-nav"><button type="button" class="text-back" id="levelsBackBtn">← Chapters</button><a class="brand" href="#/home" aria-label="Campus Quest home"><span class="brand-mark">CQ<span class="brand-spark">✦</span></span><span class="brand-text">CAMPUS <b>QUEST</b><small>HKUST Campus Quest</small></span></a></div>
+      <div class="topbar-right"><span class="edition">WEB EXPEDITION <span class="dot">●</span> 01</span><div class="progress-pill"><span class="progress-dots" id="progressDots"></span><span id="progressText">LEVEL 1 / 3</span></div></div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar" aria-label="Campus map and mission progress">
+        <div class="sidebar-head"><span class="eyebrow" id="gameChapterLabel">CHAPTER 01</span><h1 id="gameHeading">The Missing<br> <em>Welcome Card</em></h1><p id="gameChapterIntro">Find the hidden welcome-card pieces across campus.</p></div>
+        <div class="mission-card"><div class="section-head"><span>Quest levels</span><span class="tiny-label" id="levelStatus">01 / 03</span></div><div class="level-track" id="levelTrack" aria-label="Three game levels"></div><div class="level-body"><span class="level-kicker" id="levelKicker">LEVEL 01</span><h2 id="levelTitle">The Greeting</h2><p id="levelDescription"></p><div id="levelContent"></div></div></div>
+        <div class="map-card"><div class="section-head"><span>Clear Water Bay Map</span><span class="tiny-label" id="visibleCount">46 scenes</span></div><div class="map-surface" aria-label="Official HKUST campus tour map"><img class="official-map" src="assets/hkust-campus-map.jpg" alt="Official HKUST Clear Water Bay campus map"><svg class="map-links" id="mapLinks" viewBox="0 0 340 324" preserveAspectRatio="none" aria-hidden="true"></svg><div class="map-points" id="mapPoints"></div></div><div class="map-guide"><span id="mapGuideText">Highlighted pins are exits you can walk to now.</span><button type="button" id="walkNextBtn" hidden>Walk one step ↗</button></div><div class="scene-filters"><input id="sceneSearch" type="search" placeholder="Search places" aria-label="Search scenes"><select id="categoryFilter" aria-label="Filter scenes by category"><option value="all">All categories</option><option value="Landmarks">Landmarks</option><option value="Buildings">Buildings</option><option value="Teaching & Learning Spaces">Teaching & Learning Spaces</option><option value="Student Halls">Student Halls</option><option value="Sports & Recreational Facilities">Sports & Recreational Facilities</option><option value="Amenities">Amenities</option></select></div><div class="map-route" id="mapRoute" aria-label="All scenes"></div><div class="map-caption"><span class="legend-pin"></span> Green pins: connected exits · Select another place to plan a route <span>Map positions from HKUST tour</span></div></div>
+      </aside>
+
+      <section class="experience" aria-label="Panorama exploration scene">
+        <div class="scene-header"><div><span class="scene-kicker" id="sceneKicker">LOCATION 01 / 46</span><h2 id="sceneTitle">North Entrance</h2><p id="sceneSubtitle">North Entrance · Starting point</p></div><button class="help-btn" id="helpBtn" aria-label="View instructions">How to play <span>?</span></button></div>
+        <div class="viewport-wrap"><div class="viewport" id="viewport" tabindex="0" aria-label="Interactive HKUST panorama. Drag to look around; arrow keys turn and zoom."><div class="panorama" id="panorama"></div><div class="panorama-shade"></div><div class="hotspot-layer" id="hotspotLayer"></div><div class="view-reticle" aria-hidden="true"></div><div class="scene-badge"><span class="live-dot"></span> PANORAMA VIEW <span>·</span> Official HKUST panorama</div><div class="view-hint" id="viewHint">Drag to look around · ↑↓ to zoom</div><div class="compass"><span>←</span><strong id="compassBearing">180°</strong><span>→</span></div><div class="zoom-meter" id="zoomLevel" aria-live="polite">ZOOM 100%</div></div><div class="viewport-bottom"><div class="scene-index"><span id="sceneNumber">01</span><span class="divider-line"></span><span id="sceneTotal">46</span><span class="view-caption">Explore scenes</span></div><div class="view-controls"><button id="leftBtn" aria-label="Turn left">←</button><span>← → Turn · ↑ ↓ Zoom</span><button id="rightBtn" aria-label="Turn right">→</button></div></div></div>
+        <div class="scene-exits"><div class="section-head"><span>Connected exits</span><span class="tiny-label" id="exitCount">EXITS</span></div><div class="scene-exit-list" id="sceneExitList"></div></div><div class="experience-foot"><div><span class="foot-icon">✦</span><strong>Explorer tip</strong><span id="sceneHint">Look closely as you explore each panorama.</span></div><span class="foot-count" id="sceneProgress">LEVEL 1</span></div>
+      </section>
+    </main>
+    <footer class="footer"><span>© CAMPUS QUEST · Independent interactive prototype</span><span>Map and panoramas from the official HKUST tour. Imagery © HKUST. Puzzle and interface are part of this independent prototype. <a href="https://campus-vr.hkust.edu.hk/" target="_blank" rel="noopener">Official HKUST tour ↗</a></span></footer>
+  </div>
+
+  <dialog id="gameDialog" class="game-dialog"><form method="dialog" class="dialog-panel"><button class="dialog-close" value="close" aria-label="Close">×</button><span class="dialog-kicker" id="dialogKicker">DISCOVERY 01</span><div class="dialog-symbol" id="dialogSymbol">✦</div><h2 id="dialogTitle">Clue</h2><p id="dialogBody"></p><div id="dialogChoices" class="dialog-choices"></div><p id="dialogFeedback" class="dialog-feedback" aria-live="polite"></p><button class="dialog-primary" id="dialogAction" value="close">Continue exploring →</button></form></dialog>
+  <dialog id="taskDialog" class="game-dialog task-dialog"><div class="dialog-panel"><button type="button" class="dialog-close" id="taskDialogClose" aria-label="Close task window">×</button><span class="dialog-kicker" id="taskKicker">TODAY'S TASK</span><div class="dialog-symbol">✦</div><h2 id="taskDialogTitle"></h2><p id="taskQuestion"></p><div class="dialog-choices" id="taskChoices"></div><p class="dialog-feedback" id="taskFeedback" role="status" aria-live="polite"></p><button type="button" class="dialog-primary" id="taskContinue">Continue to next stop →</button></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

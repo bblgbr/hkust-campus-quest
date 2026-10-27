@@ -4,7 +4,7 @@ A three-chapter browser game built around 46 panoramas and the Clear Water Bay c
 
 ## Play online
 
-Once GitHub Pages is enabled with **GitHub Actions** as the source, the site will be available at <https://bblgbr.github.io/hkust-campus-quest/>. Each push to `main` deploys the `dist/` folder.
+Play at <https://bblgbr.github.io/hkust-campus-quest/>. GitHub Pages deploys the `dist/` folder on each push to `main`.
 
 ## Run locally
 
